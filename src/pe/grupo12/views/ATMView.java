@@ -9,14 +9,19 @@ package pe.grupo12.views;
  *
  * @author ID46499778
  */
-public class ATM extends javax.swing.JFrame {
+public class ATMView extends javax.swing.JFrame {
+    private String numeroCuenta;
+    private String nip;
+    private int menuPrincipalOpcion;
+    private int menuRetiroOpcion;
 
     /**
      * Creates new form ATM
      */
-    public ATM() {
+    public ATMView() {
         initComponents();
-        pantalla.setText("¡Bienvenido!\n\nEscriba su número de cuenta:");
+        this.setResizable(false);
+        pantalla.setText(UtilView.bienvenida);
     }
 
     /**
@@ -41,7 +46,8 @@ public class ATM extends javax.swing.JFrame {
         boton10 = new javax.swing.JButton();
         botonEnter = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        pantalla = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        pantalla = new javax.swing.JTextArea();
         jPanel3 = new javax.swing.JPanel();
         botonDeposito = new javax.swing.JButton();
         botonRetiro = new javax.swing.JButton();
@@ -168,7 +174,9 @@ public class ATM extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         pantalla.setEditable(false);
-        pantalla.setBackground(new java.awt.Color(255, 255, 255));
+        pantalla.setColumns(20);
+        pantalla.setRows(5);
+        jScrollPane1.setViewportView(pantalla);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -176,14 +184,14 @@ public class ATM extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pantalla, javax.swing.GroupLayout.DEFAULT_SIZE, 645, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 645, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pantalla, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -288,20 +296,21 @@ public class ATM extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ATM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ATMView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ATM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ATMView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ATM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ATMView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ATM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ATMView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ATM().setVisible(true);
+                new ATMView().setVisible(true);
             }
         });
     }
@@ -323,6 +332,9 @@ public class ATM extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField pantalla;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea pantalla;
     // End of variables declaration//GEN-END:variables
+    
+    
 }
