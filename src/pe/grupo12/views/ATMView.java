@@ -5,6 +5,14 @@
  */
 package pe.grupo12.views;
 
+import javax.swing.Action;
+import java.awt.event.ActionEvent;
+import javax.swing.AbstractAction;
+import javax.swing.InputMap;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.KeyStroke;
+
 /**
  *
  * @author ID46499778
@@ -14,6 +22,14 @@ public class ATMView extends javax.swing.JFrame {
     private String nip;
     private int menuPrincipalOpcion;
     private int menuRetiroOpcion;
+    
+    // Evento asociado al teclado número para los botones
+    Action tecladoNumericoAction = new AbstractAction() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            actualizarPantallaDesdeTecladoNumerico(e.getActionCommand(), (JButton) e.getSource());
+        }
+    };
 
     /**
      * Creates new form ATM
@@ -22,6 +38,33 @@ public class ATMView extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);
         pantalla.setText(UtilView.bienvenida);
+        
+        asociarBotonATecladoNumerico(boton0);
+        asociarBotonATecladoNumerico(boton1);
+        asociarBotonATecladoNumerico(boton2);
+        asociarBotonATecladoNumerico(boton3);
+        asociarBotonATecladoNumerico(boton4);
+        asociarBotonATecladoNumerico(boton5);
+        asociarBotonATecladoNumerico(boton6);
+        asociarBotonATecladoNumerico(boton7);
+        asociarBotonATecladoNumerico(boton8);
+        asociarBotonATecladoNumerico(boton9);
+        
+    }
+    
+    // Método para mapear un botón con la tecla del teclado numerico que le corresponde
+    public final void asociarBotonATecladoNumerico(JButton boton) {
+        String numeroBoton = boton.getText();
+        KeyStroke pressed = KeyStroke.getKeyStroke(numeroBoton);
+        InputMap inputMap = boton.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        inputMap.put(pressed, numeroBoton);
+        boton.getActionMap().put(numeroBoton, tecladoNumericoAction);
+    }
+    
+    // Método para añadir el texto del botón a la pantalla. También le da el foto al botón (Util si se usa el teclado numérico en lugar del evento clic)
+    public void actualizarPantallaDesdeTecladoNumerico(String numero, JButton boton) {
+        pantalla.append(numero);
+        boton.requestFocus();
     }
 
     /**
@@ -43,7 +86,7 @@ public class ATMView extends javax.swing.JFrame {
         boton7 = new javax.swing.JButton();
         boton8 = new javax.swing.JButton();
         boton9 = new javax.swing.JButton();
-        boton10 = new javax.swing.JButton();
+        boton0 = new javax.swing.JButton();
         botonEnter = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -65,6 +108,11 @@ public class ATMView extends javax.swing.JFrame {
         });
 
         boton1.setText("1");
+        boton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton1ActionPerformed(evt);
+            }
+        });
 
         boton2.setText("2");
         boton2.addActionListener(new java.awt.event.ActionListener() {
@@ -74,6 +122,11 @@ public class ATMView extends javax.swing.JFrame {
         });
 
         boton4.setText("4");
+        boton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton4ActionPerformed(evt);
+            }
+        });
 
         boton5.setText("5");
         boton5.addActionListener(new java.awt.event.ActionListener() {
@@ -90,6 +143,11 @@ public class ATMView extends javax.swing.JFrame {
         });
 
         boton7.setText("7");
+        boton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton7ActionPerformed(evt);
+            }
+        });
 
         boton8.setText("8");
         boton8.addActionListener(new java.awt.event.ActionListener() {
@@ -105,7 +163,12 @@ public class ATMView extends javax.swing.JFrame {
             }
         });
 
-        boton10.setText("0");
+        boton0.setText("0");
+        boton0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton0ActionPerformed(evt);
+            }
+        });
 
         botonEnter.setText("Enter");
         botonEnter.addActionListener(new java.awt.event.ActionListener() {
@@ -136,7 +199,7 @@ public class ATMView extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(boton7)
-                            .addComponent(boton10))
+                            .addComponent(boton0))
                         .addGap(32, 32, 32)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -166,7 +229,7 @@ public class ATMView extends javax.swing.JFrame {
                     .addComponent(boton7, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(boton10, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boton0, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonEnter, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -251,29 +314,55 @@ public class ATMView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void boton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton3ActionPerformed
+    private void boton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_boton3ActionPerformed
+        actualizarPantallaDesdeTecladoNumerico("1", boton1);
+    }//GEN-LAST:event_boton1ActionPerformed
 
     private void boton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton2ActionPerformed
         // TODO add your handling code here:
+        actualizarPantallaDesdeTecladoNumerico("2", boton2);
     }//GEN-LAST:event_boton2ActionPerformed
+
+    private void boton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton3ActionPerformed
+        // TODO add your handling code here:
+        actualizarPantallaDesdeTecladoNumerico("3", boton3);
+    }//GEN-LAST:event_boton3ActionPerformed
+
+    private void boton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton4ActionPerformed
+        // TODO add your handling code here:
+        actualizarPantallaDesdeTecladoNumerico("4", boton4);
+    }//GEN-LAST:event_boton4ActionPerformed
 
     private void boton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton5ActionPerformed
         // TODO add your handling code here:
+        actualizarPantallaDesdeTecladoNumerico("5", boton5);
     }//GEN-LAST:event_boton5ActionPerformed
 
     private void boton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton6ActionPerformed
         // TODO add your handling code here:
+        actualizarPantallaDesdeTecladoNumerico("6", boton6);
     }//GEN-LAST:event_boton6ActionPerformed
+
+    private void boton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton7ActionPerformed
+        // TODO add your handling code here:
+        actualizarPantallaDesdeTecladoNumerico("7", boton7);
+    }//GEN-LAST:event_boton7ActionPerformed
 
     private void boton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton8ActionPerformed
         // TODO add your handling code here:
+        actualizarPantallaDesdeTecladoNumerico("8", boton8);
     }//GEN-LAST:event_boton8ActionPerformed
 
     private void boton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton9ActionPerformed
         // TODO add your handling code here:
+        actualizarPantallaDesdeTecladoNumerico("9", boton9);
     }//GEN-LAST:event_boton9ActionPerformed
+
+    private void boton0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton0ActionPerformed
+        // TODO add your handling code here:
+        actualizarPantallaDesdeTecladoNumerico("0", boton0);
+    }//GEN-LAST:event_boton0ActionPerformed
 
     private void botonEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEnterActionPerformed
         // TODO add your handling code here:
@@ -316,8 +405,8 @@ public class ATMView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton boton0;
     private javax.swing.JButton boton1;
-    private javax.swing.JButton boton10;
     private javax.swing.JButton boton2;
     private javax.swing.JButton boton3;
     private javax.swing.JButton boton4;

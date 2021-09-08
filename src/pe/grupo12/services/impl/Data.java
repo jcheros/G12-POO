@@ -12,4 +12,15 @@ package pe.grupo12.services.impl;
 public class Data {
     public final static String NUMERO_CUENTA = "12345";
     public final static String NIP = "1111";
+    public float saldoInicial = 5000.00f;
+
+    public float getSaldoInicial() {
+        return saldoInicial;
+    }
+
+    public void setSaldoInicial(float saldoInicial) {
+        this.saldoInicial = saldoInicial;
+    }
+    
+    
 }

@@ -9,6 +9,8 @@ package pe.grupo12.services;
  *
  * @author ID46499778
  */
-public class ATMService {
-    
+public interface ATMService {
+    public String mostrarMenuPrincipal();
+    public String mostrarMenuRetiro();
+    public boolean validarRetiro(float retiro);
 }
