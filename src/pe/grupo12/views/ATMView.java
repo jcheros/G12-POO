@@ -7,11 +7,17 @@ package pe.grupo12.views;
 
 import javax.swing.Action;
 import java.awt.event.ActionEvent;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
+import pe.grupo12.services.impl.Data;
+import pe.grupo12.services.impl.LogonServiceImpl;
 
 /**
  *
@@ -22,6 +28,11 @@ public class ATMView extends javax.swing.JFrame {
     private String nip;
     private int menuPrincipalOpcion;
     private int menuRetiroOpcion;
+    private String valorIngresado = "";
+    private int estadoPantalla = 1;
+    
+    private LogonServiceImpl logonService;
+    private Data data;
     
     // Evento asociado al teclado número para los botones
     Action tecladoNumericoAction = new AbstractAction() {
@@ -36,8 +47,12 @@ public class ATMView extends javax.swing.JFrame {
      */
     public ATMView() {
         initComponents();
+        
+        logonService = new LogonServiceImpl();
+        data = new Data();
+        
         this.setResizable(false);
-        pantalla.setText(UtilView.bienvenida);
+        pantalla.setText(UtilView.BIENVENIDA);
         
         asociarBotonATecladoNumerico(boton0);
         asociarBotonATecladoNumerico(boton1);
@@ -49,7 +64,19 @@ public class ATMView extends javax.swing.JFrame {
         asociarBotonATecladoNumerico(boton7);
         asociarBotonATecladoNumerico(boton8);
         asociarBotonATecladoNumerico(boton9);
+    }
+    
+    public void regresarPantalla(String mensaje) {
+        TimerTask task = new TimerTask() {
+            public void run() {
+                pantalla.setText(mensaje);
+            }
+        };
         
+        Timer timer = new Timer("Timer");
+
+        long delay = 3000L;
+        timer.schedule(task, delay);
     }
     
     // Método para mapear un botón con la tecla del teclado numerico que le corresponde
@@ -64,6 +91,7 @@ public class ATMView extends javax.swing.JFrame {
     // Método para añadir el texto del botón a la pantalla. También le da el foto al botón (Util si se usa el teclado numérico en lugar del evento clic)
     public void actualizarPantallaDesdeTecladoNumerico(String numero, JButton boton) {
         pantalla.append(numero);
+        valorIngresado += numero;
         boton.requestFocus();
     }
 
@@ -366,6 +394,86 @@ public class ATMView extends javax.swing.JFrame {
 
     private void botonEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEnterActionPerformed
         // TODO add your handling code here:
+        switch (estadoPantalla) {
+            case 1: // Ingreso de número de cuenta
+                System.out.println("valorIngresado: " + valorIngresado);
+                numeroCuenta = valorIngresado;
+                valorIngresado = "";
+                estadoPantalla = 2;
+                pantalla.append("\nEscriba su NIP: ");
+                break;
+            case 2: // Ingreso de código NIP
+                System.out.println("valorIngresado: " + valorIngresado);
+                nip = valorIngresado;
+                valorIngresado = "";
+                estadoPantalla = 3;
+                
+                boolean validarCredenciales = logonService.validarCredenciales(numeroCuenta, nip);
+                
+                if (validarCredenciales) {
+                    pantalla.setText(UtilView.MENU_PRINCIPAL);
+                } else {
+                    pantalla.setText(UtilView.MENSAJE_DATO_INCORRECTO);
+                    regresarPantalla(UtilView.BIENVENIDA);
+                }
+                
+                break;
+            case 3: // Validación de credenciales y menú principal
+                menuPrincipalOpcion = Integer.parseInt(valorIngresado);
+                valorIngresado = "";
+                System.out.println("menuPrincipalOpcion: " + menuPrincipalOpcion);
+                
+                if (menuPrincipalOpcion >= 1 && menuPrincipalOpcion <= 4) {
+                    switch (menuPrincipalOpcion) {
+                        case 1: // Ver saldo
+                            pantalla.setText("Su saldo actual es: " + data.getSaldoInicial());
+                            regresarPantalla(UtilView.MENU_PRINCIPAL);
+                            break;
+                        case 2: // Retirar fondos
+                            estadoPantalla = 4;
+                            pantalla.setText(UtilView.MENU_RETIRO);
+                            break;
+                        case 3: // Depositar fondos
+                            break;
+                        case 4: // Salir
+                            estadoPantalla = 1;
+                            pantalla.setText("¡Gracias! Vuelva pronto.");
+                            regresarPantalla(UtilView.BIENVENIDA);
+                            break;
+                    }
+                } else {
+                    pantalla.setText(UtilView.MENSAJE_DATO_INCORRECTO);
+                    regresarPantalla(UtilView.MENU_PRINCIPAL);
+                }
+                break;
+            case 4: // Retiro de fondos
+                menuRetiroOpcion = Integer.parseInt(valorIngresado);
+                valorIngresado = "";
+                System.out.println("menuRetiroOpcion: " + menuRetiroOpcion);
+                
+                if (menuRetiroOpcion >= 1 && menuRetiroOpcion <= 6) {
+                    switch (menuRetiroOpcion) {
+                        case 1:
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            break;
+                        case 4:
+                            break;
+                        case 5:
+                            break;
+                        case 6:
+                            break;
+                    }
+                } else {
+                    pantalla.setText(UtilView.MENSAJE_DATO_INCORRECTO);
+                    regresarPantalla(UtilView.MENU_RETIRO);
+                }
+                
+                break;
+                
+        }
     }//GEN-LAST:event_botonEnterActionPerformed
 
     /**
@@ -403,6 +511,7 @@ public class ATMView extends javax.swing.JFrame {
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boton0;

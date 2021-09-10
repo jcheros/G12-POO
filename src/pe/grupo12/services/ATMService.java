@@ -12,5 +12,5 @@ package pe.grupo12.services;
 public interface ATMService {
     public String mostrarMenuPrincipal();
     public String mostrarMenuRetiro();
-    public boolean validarRetiro(float retiro);
+    public boolean validarRetiro(int retiro);
 }

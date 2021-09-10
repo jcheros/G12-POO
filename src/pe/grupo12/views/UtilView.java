@@ -10,7 +10,20 @@ package pe.grupo12.views;
  * @author ID46499778
  */
 public class UtilView {
-    public final static String bienvenida = "¡Bienvenido!\n\nEscriba su número de cuenta: ";
-    public final static String menuPricipal = "";
+    public final static String BIENVENIDA = "¡Bienvenido!\n\nEscriba su número de cuenta: ";
+    public final static String MENU_PRINCIPAL = ""
+            + "Menú Principal\n"
+            + "\t1. Ver mi saldo\n"
+            + "\t2. Retirar efectivo\n"
+            + "\t3. Depositar fondos\n"
+            + "\t4. Salir\n"
+            + "Escriba una opción: ";
+    public final static String MENU_RETIRO = ""
+            + "Menú retiro\n"
+            + "\t1- $20 \t4- $100\n"
+            + "\t2- $40 \t5- $200\n"
+            + "\t3- $60 \t6- Cancelar transacción\n"
+            + "Elija su monto de retiro: ";
+    public final static String MENSAJE_DATO_INCORRECTO = "Datos incorrectos";
     
 }
