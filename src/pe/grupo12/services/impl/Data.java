@@ -13,14 +13,14 @@ public class Data {
     public final static String NUMERO_CUENTA = "1111";
     public final static String NIP = "11";
     
-    private int saldoInicial = 5000;
+    private int saldoActual = 500;
 
-    public int getSaldoInicial() {
-        return saldoInicial;
+    public int getSaldoActual() {
+        return saldoActual;
     }
 
-    public void setSaldoInicial(int saldoInicial) {
-        this.saldoInicial = saldoInicial;
+    public void setSaldoActual(int saldoActual) {
+        this.saldoActual = saldoActual;
     }
     
     

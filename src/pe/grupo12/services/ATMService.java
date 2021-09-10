@@ -10,7 +10,8 @@ package pe.grupo12.services;
  * @author ID46499778
  */
 public interface ATMService {
-    public String mostrarMenuPrincipal();
-    public String mostrarMenuRetiro();
-    public boolean validarRetiro(int retiro);
+    public boolean validarRetiroFondos(int retiro);
+    public int retirarFondos(int retiro);
+    public int depositarFondos(int deposito);
+    public int obtenerSaldoActual();
 }

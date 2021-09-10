@@ -9,14 +9,12 @@ import javax.swing.Action;
 import java.awt.event.ActionEvent;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
-import pe.grupo12.services.impl.Data;
+import pe.grupo12.services.impl.ATMServiceImpl;
 import pe.grupo12.services.impl.LogonServiceImpl;
 
 /**
@@ -32,7 +30,7 @@ public class ATMView extends javax.swing.JFrame {
     private int estadoPantalla = 1;
     
     private LogonServiceImpl logonService;
-    private Data data;
+    private ATMServiceImpl aTMService;
     
     // Evento asociado al teclado número para los botones
     Action tecladoNumericoAction = new AbstractAction() {
@@ -49,7 +47,7 @@ public class ATMView extends javax.swing.JFrame {
         initComponents();
         
         logonService = new LogonServiceImpl();
-        data = new Data();
+        aTMService = new ATMServiceImpl();
         
         this.setResizable(false);
         pantalla.setText(UtilView.BIENVENIDA);
@@ -66,6 +64,7 @@ public class ATMView extends javax.swing.JFrame {
         asociarBotonATecladoNumerico(boton9);
     }
     
+    // Método para mostrar un mensaje determinado en la pantalla luego de cierto tiempo
     public void regresarPantalla(String mensaje) {
         TimerTask task = new TimerTask() {
             public void run() {
@@ -406,11 +405,11 @@ public class ATMView extends javax.swing.JFrame {
                 System.out.println("valorIngresado: " + valorIngresado);
                 nip = valorIngresado;
                 valorIngresado = "";
-                estadoPantalla = 3;
                 
                 boolean validarCredenciales = logonService.validarCredenciales(numeroCuenta, nip);
                 
                 if (validarCredenciales) {
+                    estadoPantalla = 3;
                     pantalla.setText(UtilView.MENU_PRINCIPAL);
                 } else {
                     pantalla.setText(UtilView.MENSAJE_DATO_INCORRECTO);
@@ -426,7 +425,7 @@ public class ATMView extends javax.swing.JFrame {
                 if (menuPrincipalOpcion >= 1 && menuPrincipalOpcion <= 4) {
                     switch (menuPrincipalOpcion) {
                         case 1: // Ver saldo
-                            pantalla.setText("Su saldo actual es: " + data.getSaldoInicial());
+                            pantalla.setText("Su saldo actual es: " + aTMService.obtenerSaldoActual());
                             regresarPantalla(UtilView.MENU_PRINCIPAL);
                             break;
                         case 2: // Retirar fondos
@@ -434,6 +433,8 @@ public class ATMView extends javax.swing.JFrame {
                             pantalla.setText(UtilView.MENU_RETIRO);
                             break;
                         case 3: // Depositar fondos
+                            estadoPantalla = 5;
+                            pantalla.setText(UtilView.MENSAJE_DEPOSITO);
                             break;
                         case 4: // Salir
                             estadoPantalla = 1;
@@ -449,22 +450,40 @@ public class ATMView extends javax.swing.JFrame {
             case 4: // Retiro de fondos
                 menuRetiroOpcion = Integer.parseInt(valorIngresado);
                 valorIngresado = "";
+                int valorARetirar = 0;
                 System.out.println("menuRetiroOpcion: " + menuRetiroOpcion);
                 
                 if (menuRetiroOpcion >= 1 && menuRetiroOpcion <= 6) {
                     switch (menuRetiroOpcion) {
                         case 1:
+                            valorARetirar = 20;
                             break;
                         case 2:
+                            valorARetirar = 40;
                             break;
                         case 3:
+                            valorARetirar = 60;
                             break;
                         case 4:
+                            valorARetirar = 100;
                             break;
                         case 5:
+                            valorARetirar = 200;
                             break;
-                        case 6:
-                            break;
+                    }
+                    
+                    if (menuRetiroOpcion == 6) {
+                        pantalla.setText(UtilView.MENU_PRINCIPAL);
+                        estadoPantalla = 3;
+                    } else {
+                        if (aTMService.validarRetiroFondos(valorARetirar)) {
+                            aTMService.retirarFondos(valorARetirar);
+                            pantalla.setText(UtilView.MENSAJE_RETIRO_OK);
+                            regresarPantalla(UtilView.MENU_RETIRO);
+                        } else {
+                            pantalla.setText(UtilView.MENSAJE_SALDO_INSUFICIENTE);
+                            regresarPantalla(UtilView.MENU_RETIRO);
+                        }
                     }
                 } else {
                     pantalla.setText(UtilView.MENSAJE_DATO_INCORRECTO);
@@ -472,7 +491,20 @@ public class ATMView extends javax.swing.JFrame {
                 }
                 
                 break;
+            case 5: // Deposito
+                int valorDeposito = Integer.parseInt(valorIngresado);
+                valorIngresado = "";
                 
+                if (valorDeposito == 0) {
+                    pantalla.setText(UtilView.MENSAJE_OPERACION_CANCELADA);
+                } else {
+                    aTMService.depositarFondos(valorDeposito);
+                    pantalla.setText(UtilView.MENSAJE_DEPOSITO_OK);
+                }
+                
+                estadoPantalla = 3;
+                regresarPantalla(UtilView.MENU_PRINCIPAL);
+                break;
         }
     }//GEN-LAST:event_botonEnterActionPerformed
 

@@ -25,5 +25,9 @@ public class UtilView {
             + "\t3- $60 \t6- Cancelar transacción\n"
             + "Elija su monto de retiro: ";
     public final static String MENSAJE_DATO_INCORRECTO = "Datos incorrectos";
-    
+    public final static String MENSAJE_SALDO_INSUFICIENTE = "Saldo insuficiente. Intente con un valor menor.";
+    public final static String MENSAJE_RETIRO_OK = "Retire su efectivo";
+    public final static String MENSAJE_DEPOSITO = "Ingrese el monto a depositar: ";
+    public final static String MENSAJE_OPERACION_CANCELADA = "Operación cancelada.";
+    public final static String MENSAJE_DEPOSITO_OK = "Se depósito el monto correctamente.";
 }

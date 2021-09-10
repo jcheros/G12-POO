@@ -12,20 +12,27 @@ import pe.grupo12.services.ATMService;
  * @author ID46499778
  */
 public class ATMServiceImpl implements ATMService {
+    private Data data = new Data();
 
     @Override
-    public String mostrarMenuPrincipal() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String mostrarMenuRetiro() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean validarRetiro(int retiro) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean validarRetiroFondos(int retiro) {
+        return retiro <= data.getSaldoActual();
     }
     
+    @Override
+    public int retirarFondos(int retiro) {
+        data.setSaldoActual(data.getSaldoActual() - retiro);
+        return data.getSaldoActual();
+    }
+
+    @Override
+    public int depositarFondos(int deposito) {
+        data.setSaldoActual(data.getSaldoActual() + deposito);
+        return data.getSaldoActual();
+    }
+    
+    @Override
+    public int obtenerSaldoActual() {
+        return data.getSaldoActual();
+    }
 }
