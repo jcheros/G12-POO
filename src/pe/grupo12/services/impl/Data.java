@@ -13,7 +13,7 @@ public class Data {
     public final static String NUMERO_CUENTA = "1111";
     public final static String NIP = "11";
     
-    private int saldoActual = 500;
+    private int saldoActual = 5000;
 
     public int getSaldoActual() {
         return saldoActual;

@@ -29,5 +29,5 @@ public class UtilView {
     public final static String MENSAJE_RETIRO_OK = "Retire su efectivo";
     public final static String MENSAJE_DEPOSITO = "Ingrese el monto a depositar: ";
     public final static String MENSAJE_OPERACION_CANCELADA = "Operación cancelada.";
-    public final static String MENSAJE_DEPOSITO_OK = "Se depósito el monto correctamente.";
+    public final static String MENSAJE_DEPOSITO_OK = "Se depositó el monto correctamente.";
 }
