@@ -516,6 +516,7 @@ public class ATMView extends javax.swing.JFrame {
                     estadoPantalla = 3;
                     pantalla.setText(UtilView.MENU_PRINCIPAL);
                 } else {
+                    estadoPantalla = 1;
                     pantalla.setText(UtilView.MENSAJE_DATO_INCORRECTO);
                     regresarPantalla(UtilView.BIENVENIDA);
                 }
