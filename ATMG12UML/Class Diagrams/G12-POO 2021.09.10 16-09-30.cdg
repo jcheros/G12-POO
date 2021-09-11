@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="G12-POO">
+  <ClassDiagramComponents>
+    <Class name="Grupo12" package="" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ATMServiceImpl" package="pe.grupo12.services.impl" visibility="public" xPosition="430.0" yPosition="20.0">
+      <Fields>
+        <Field name="data" type="Data" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="validarRetiroFondos" returnType="boolean" visibility="public">
+          <Argument type="int" name="retiro"/>
+        </Method>
+        <Method name="retirarFondos" returnType="int" visibility="public">
+          <Argument type="int" name="retiro"/>
+        </Method>
+        <Method name="depositarFondos" returnType="int" visibility="public">
+          <Argument type="int" name="deposito"/>
+        </Method>
+        <Method name="obtenerSaldoActual" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Data" package="pe.grupo12.services.impl" visibility="public" xPosition="18.0" yPosition="312.0">
+      <Fields>
+        <Field name="NUMERO_CUENTA" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="NIP" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="saldoActual" type="int" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getSaldoActual" returnType="int" visibility="public"/>
+        <Method name="setSaldoActual" returnType="void" visibility="public">
+          <Argument type="int" name="saldoActual"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="LogonServiceImpl" package="pe.grupo12.services.impl" visibility="public" xPosition="714.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="validarCredenciales" returnType="boolean" visibility="public">
+          <Argument type="String" name="numeroCuenta"/>
+          <Argument type="String" name="nip"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ATMView" package="pe.grupo12.views" visibility="public" xPosition="291.0" yPosition="374.0">
+      <Fields>
+        <Field name="numeroCuenta" type="String" visibility="private"/>
+        <Field name="nip" type="String" visibility="private"/>
+        <Field name="menuPrincipalOpcion" type="int" visibility="private"/>
+        <Field name="menuRetiroOpcion" type="int" visibility="private"/>
+        <Field name="valorIngresado" type="String" visibility="private"/>
+        <Field name="estadoPantalla" type="int" visibility="private"/>
+        <Field name="logonService" type="LogonServiceImpl" visibility="private"/>
+        <Field name="aTMService" type="ATMServiceImpl" visibility="private"/>
+        <Field name="tecladoNumericoAction" type="Action" visibility="package"/>
+        <Field name="boton0" type="javax.swing.JButton" visibility="private"/>
+        <Field name="boton1" type="javax.swing.JButton" visibility="private"/>
+        <Field name="boton2" type="javax.swing.JButton" visibility="private"/>
+        <Field name="boton3" type="javax.swing.JButton" visibility="private"/>
+        <Field name="boton4" type="javax.swing.JButton" visibility="private"/>
+        <Field name="boton5" type="javax.swing.JButton" visibility="private"/>
+        <Field name="boton6" type="javax.swing.JButton" visibility="private"/>
+        <Field name="boton7" type="javax.swing.JButton" visibility="private"/>
+        <Field name="boton8" type="javax.swing.JButton" visibility="private"/>
+        <Field name="boton9" type="javax.swing.JButton" visibility="private"/>
+        <Field name="botonDeposito" type="javax.swing.JButton" visibility="private"/>
+        <Field name="botonEnter" type="javax.swing.JButton" visibility="private"/>
+        <Field name="botonRetiro" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel3" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel4" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jSeparator1" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="pantalla" type="javax.swing.JTextArea" visibility="private"/>
+        <Field name="txt_retito" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="txt_retito1" type="javax.swing.JLabel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="regresarPantalla" returnType="void" visibility="public">
+          <Argument type="String" name="mensaje"/>
+        </Method>
+        <Method name="asociarBotonATecladoNumerico" returnType="void" visibility="public" isFinal="true">
+          <Argument type="JButton" name="boton"/>
+        </Method>
+        <Method name="actualizarPantallaDesdeTecladoNumerico" returnType="void" visibility="public">
+          <Argument type="String" name="numero"/>
+          <Argument type="JButton" name="boton"/>
+        </Method>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="boton1ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="boton2ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="boton3ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="boton4ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="boton5ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="boton6ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="boton7ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="boton8ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="boton9ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="boton0ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="botonEnterActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="UtilView" package="pe.grupo12.views" visibility="public" xPosition="1130.0" yPosition="20.0">
+      <Fields>
+        <Field name="BIENVENIDA" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="MENU_PRINCIPAL" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="MENU_RETIRO" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="MENSAJE_DATO_INCORRECTO" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="MENSAJE_SALDO_INSUFICIENTE" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="MENSAJE_RETIRO_OK" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="MENSAJE_DEPOSITO" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="MENSAJE_OPERACION_CANCELADA" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="MENSAJE_DEPOSITO_OK" type="String" visibility="public" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Interface name="ATMService" package="pe.grupo12.services" visibility="public" xPosition="18.0" yPosition="148.0">
+      <Methods>
+        <Method name="validarRetiroFondos" returnType="boolean" visibility="public">
+          <Argument type="int" name="retiro"/>
+        </Method>
+        <Method name="retirarFondos" returnType="int" visibility="public">
+          <Argument type="int" name="retiro"/>
+        </Method>
+        <Method name="depositarFondos" returnType="int" visibility="public">
+          <Argument type="int" name="deposito"/>
+        </Method>
+        <Method name="obtenerSaldoActual" returnType="int" visibility="public"/>
+      </Methods>
+    </Interface>
+    <Interface name="LogonService" package="pe.grupo12.services" visibility="public" xPosition="999.0" yPosition="374.0">
+      <Methods>
+        <Method name="validarCredenciales" returnType="boolean" visibility="package">
+          <Argument type="String" name="numeroCuenta"/>
+          <Argument type="String" name="nip"/>
+        </Method>
+      </Methods>
+    </Interface>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="logonService" source="pe.grupo12.views.ATMView" target="pe.grupo12.services.impl.LogonServiceImpl" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="data" source="pe.grupo12.services.impl.ATMServiceImpl" target="pe.grupo12.services.impl.Data" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="pe.grupo12.services.impl.LogonServiceImpl" target="pe.grupo12.services.LogonService"/>
+    <HasRelation name="aTMService" source="pe.grupo12.views.ATMView" target="pe.grupo12.services.impl.ATMServiceImpl" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="pe.grupo12.services.impl.ATMServiceImpl" target="pe.grupo12.services.ATMService"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
