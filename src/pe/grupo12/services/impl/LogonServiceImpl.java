@@ -35,10 +35,8 @@ public class LogonServiceImpl implements LogonService {
                 PreparedStatement statement = con.prepareStatement(query);
                 statement.setString(1, numeroCuenta);
                 statement.setString(2, nip);
-                System.out.println(statement.toString());
                 
-                ResultSet rs = statement.executeQuery();
-                
+                ResultSet rs = statement.executeQuery(); 
                 
                 if (!rs.next()) {
                     return false;
