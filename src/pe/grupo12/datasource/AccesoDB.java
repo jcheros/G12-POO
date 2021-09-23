@@ -16,7 +16,7 @@ public class AccesoDB {
     public static Connection getConnection() throws Exception {
         Connection con = null;
         String host = "localhost";
-        String port = "51521";
+        String port = "1521";
         String instance = "xe";
         String user = "USER12";
         String password = "USER12";
