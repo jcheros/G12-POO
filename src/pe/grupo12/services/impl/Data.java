@@ -10,18 +10,5 @@ package pe.grupo12.services.impl;
  * @author ID46499778
  */
 public class Data {
-    public final static String NUMERO_CUENTA = "11111";
-    public final static String NIP = "22222";
-    
-    private int saldoActual = 500;
-
-    public int getSaldoActual() {
-        return saldoActual;
-    }
-
-    public void setSaldoActual(int saldoActual) {
-        this.saldoActual = saldoActual;
-    }
-    
-    
+    public final static int CODIGO_CAJERO = 100000;
 }

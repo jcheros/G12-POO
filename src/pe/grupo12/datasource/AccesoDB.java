@@ -7,7 +7,6 @@ package pe.grupo12.datasource;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import oracle.jdbc.OracleDriver;
 
 /**
  *

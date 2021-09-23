@@ -5,10 +5,13 @@
  */
 package pe.grupo12.services;
 
+import java.util.Optional;
+import pe.grupo12.modelo.Cuenta;
+
 /**
  *
  * @author ID46499778
  */
 public interface LogonService {
-    boolean validarCredenciales(String numeroCuenta, String nip);
+    Optional<Cuenta> validarCredenciales(String numeroCuenta, String nip);
 }

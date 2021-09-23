@@ -10,8 +10,10 @@ package pe.grupo12.services;
  * @author ID46499778
  */
 public interface ATMService {
-    public boolean validarRetiroFondos(int retiro);
-    public int retirarFondos(int retiro);
-    public int depositarFondos(int deposito);
-    public int obtenerSaldoActual();
+    public boolean validarRetiroFondos(Float retiro);
+    public boolean validarSaldoCajero(Float retiro);
+    public Float retirarFondos(Float retiro);
+    public Float depositarFondos(Float deposito);
+    public Float obtenerSaldoActual();
+    public Float obtenerSaldoActualCajero();
 }
