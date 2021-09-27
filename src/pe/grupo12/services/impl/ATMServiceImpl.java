@@ -165,7 +165,7 @@ public class ATMServiceImpl implements ATMService {
         try {
             con = AccesoDB.getConnection();
             con.setAutoCommit(false);
-            String query = "insert into movimientos (fecha_hora, tipo, importe, numero_cta, codigo_cajero) values (?, ?, ?, ?, ?)";
+            String query = "insert into movimientos (numero_op, fecha_hora, tipo, importe, numero_cta, codigo_cajero) values (MOVIMIENTOS_SEQ.NEXTVAL, ?, ?, ?, ?, ?)";
 
             PreparedStatement statement = con.prepareStatement(query);
             statement.setTimestamp(1, new Timestamp(new Date().getTime()));
