@@ -104,7 +104,7 @@ create sequence MOVIMIENTOS_SEQ
 
 create table MOVIMIENTOS
 (
-    NUMERO_OP     NUMBER default "USER12"."MOVIMIENTOS_SEQ"."NEXTVAL" not null
+    NUMERO_OP     NUMBER not null
         constraint MOVIMIENTOS_PK
             primary key,
     FECHA_HORA    TIMESTAMP(6)                                        not null,
@@ -119,6 +119,9 @@ create table MOVIMIENTOS
         constraint MOVIMIENTOS_CAJEROS_CODIGO_FK
             references CAJEROS
 )
+/
+
+alter table MOVIMIENTOS modify (NUMERO_OP NUMBER default "MOVIMIENTOS_SEQ"."NEXTVAL")
 /
 
 -- Disparador para actualizar el saldo del cajero en base a las transacciones sobre la tabla moviemientos
