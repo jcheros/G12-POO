@@ -99,6 +99,9 @@ alter table CAJEROS
         primary key (CODIGO)
 /
 
+create sequence MOVIMIENTOS_SEQ
+/
+
 create table MOVIMIENTOS
 (
     NUMERO_OP     NUMBER default "USER12"."MOVIMIENTOS_SEQ"."NEXTVAL" not null
