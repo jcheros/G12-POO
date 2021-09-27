@@ -23,22 +23,36 @@ import pe.grupo12.services.ATMService;
 public class ATMServiceImpl implements ATMService {
     private final Cuenta cuenta;
 
+    /*
+    La clase sólo se podrá instanciar con una referencia a la clase Cuenta obtenida luego de ingresar correctamente
+    a la aplicación
+    */
     public ATMServiceImpl(Cuenta cuenta) {
         this.cuenta = cuenta;
     }
 
+    /*
+    Método que permite validar si el monto ingresado es menor o igual al saldo actual del cliente.
+    */
     @Override
     public boolean validarRetiroFondos(Float retiro) {
         Float saldoActual = obtenerSaldoActual();
         return retiro <= saldoActual;
     }
     
+    /*
+    Método que permite validar si el monto ingresado es menor o igual al saldo actual del cajero, además 
+    se valida si el monto ingresado es mayor o igual a S/ 20 ya que es el valor mínimo de un retiro.
+    */
     @Override
     public boolean validarSaldoCajero(Float retiro) {
         Float saldoActual = obtenerSaldoActualCajero();
         return retiro <= saldoActual && saldoActual >= 20;
     }
     
+    /*
+    Método que permite retirar efectivo de la cuenta de un cliente haciendo la validaciones correspondientes.
+    */
     @Override
     public Float retirarFondos(Float retiro) {
         // Obtenemos el saldo actual
@@ -58,6 +72,9 @@ public class ATMServiceImpl implements ATMService {
         return nuevoSaldo;
     }
 
+    /*
+    Método que permite depositar dinero a la cuenta de un cliente
+    */
     @Override
     public Float depositarFondos(Float deposito) {
         // Obtenemos el saldo actual
@@ -77,6 +94,9 @@ public class ATMServiceImpl implements ATMService {
         return nuevoSaldo;
     }
     
+    /*
+    Método que permite obtener el saldo actual de un determinado cliente
+    */
     @Override
     public Float obtenerSaldoActual() {
         Connection con = null;
@@ -107,6 +127,9 @@ public class ATMServiceImpl implements ATMService {
         return saldoActual;
     }
     
+    /*
+    Método que permite obtener el saldo actual correspondiente al cajero automático
+    */
     @Override
     public Float obtenerSaldoActualCajero() {
         Connection con = null;
@@ -136,6 +159,9 @@ public class ATMServiceImpl implements ATMService {
         return saldoActual;
     }
     
+    /*
+    Método que permite actualizar el saldo de un cliente.
+    */
     private void actualizarSaldoActual(Float saldo) {
         Connection con = null;
         
@@ -158,6 +184,9 @@ public class ATMServiceImpl implements ATMService {
         }
     }
     
+    /*
+    Método que permite hacer transacciones de retiro y depósito sobre una cuenta determinada
+    */
     private int gestionMovimientos(int tipoTransaccion, Float importe) {
         Connection con = null;
         int rows = 0;

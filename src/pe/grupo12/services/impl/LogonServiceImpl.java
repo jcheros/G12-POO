@@ -22,6 +22,10 @@ import pe.grupo12.services.LogonService;
  */
 public class LogonServiceImpl implements LogonService {
 
+    /*
+    Método para validar las credenciales de acceso de un cliente, en caso de validarse correctamente devuelve un 
+    objeto Optional con la información de la cuenta del cliente, en caso contrario devuelve un objeto Optional vacio.
+    */
     @Override
     public Optional<Cuenta> validarCredenciales(String numeroCuenta, String nip) {
         Optional<Cuenta> cuentaOptional = Optional.empty();
